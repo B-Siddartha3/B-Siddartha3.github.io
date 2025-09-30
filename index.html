@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Siddartha Bokka • Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Base */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  scroll-behavior: smooth;
+  background: linear-gradient(135deg, #000000, #1a1a1a, #6366f1, #8b5cf6, #ec4899, #000000);
+  background-attachment: fixed; /* keeps gradient steady when scrolling */
+}
+
+
+/* Navbar */
+nav { position: fixed; width:100%; top:0; left:0; background: rgba(0,0,0,0.6); display:flex; justify-content: space-between; padding:1rem 3rem; box-shadow:0 2px 10px rgba(0,0,0,0.2); z-index:100; transition:0.3s; }
+nav.scrolled { background: rgba(0,0,0,0.9); }
+nav .logo { font-weight:700; font-size:1.5rem; }
+nav ul { display:flex; list-style:none; gap:2rem; }
+nav ul li a { font-weight:500; transition:0.3s; color:#fff; }
+nav ul li a:hover { color:#fbbf24; }
+
+/* Hero */
+header {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+header img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #fff; /* optional white border */
+  box-shadow: 0 0 20px #f59e0b, 0 0 40px #3b82f6, 0 0 60px #ec4899;
+  margin-bottom: 1.5rem;
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+
+header img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px #f59e0b, 0 0 60px #3b82f6, 0 0 90px #ec4899;
+}
+
+header h1 { font-size:3rem; margin-bottom:0.5rem; opacity:0; transform: translateY(-20px); transition:0.8s; }
+header p { font-size:1.2rem; max-width:600px; opacity:0; transform: translateY(-20px); transition:1s; }
+
+/* Sections */
+section { max-width:1000px; margin:5rem auto; padding:0 1rem; opacity:0; transform: translateY(30px); transition:1s; }
+h2 { font-size:2rem; margin-bottom:2rem; position:relative; display:inline-block; color:#fff; }
+h2::after { content:''; position:absolute; width:50%; height:3px; background:#fbbf24; bottom:-5px; left:0; border-radius:2px; }
+
+/* Timeline */
+.timeline { position: relative; margin-left:2rem; }
+.timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:#fbbf24; border-radius:2px; }
+.timeline-item { position: relative; margin-bottom:3rem; padding-left:2rem; }
+.timeline-item::before { content:''; position:absolute; left:-12px; top:5px; width:20px; height:20px; background:#fbbf24; border-radius:50%; }
+.timeline-item h3, .timeline-item span, .timeline-item p { color:#fff; }
+
+/* Projects */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-content: center;
+  gap: 2rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.project-card {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: 20px;
+  background: rgba(0,0,0,0.4); /* semi-transparent black */
+  backdrop-filter: blur(10px); /* glass effect */
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  color: #fff;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.project-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+}
+
+.project-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: #fff; /* fallback color if gradient fails */
+  
+  /* Gradient text */
+  background: linear-gradient(45deg, #f59e0b, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* for Firefox support */
+}
+
+.project-card p {
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #f0f0f0;
+}
+
+
+/* Gradients for projects */
+.project1 { background: linear-gradient(135deg,#f59e0b,#f97316); }
+.project2 { background: linear-gradient(135deg,#10b981,#14b8a6); }
+.project3 { background: linear-gradient(135deg,#3b82f6,#6366f1); }
+.project4 { background: linear-gradient(135deg,#ec4899,#f43f5e); }
+
+/* Blogs */
+.blogs a { display:block; margin-bottom:1rem; padding:0.8rem 1rem; background: rgba(255,255,255,0.2); border-radius:6px; color:#fff; transition:0.3s; opacity:0; transform: translateY(30px); }
+.blogs a:hover { background:#fff; color:#1f2937; }
+
+/* Contact */
+#contact p { text-align:center; font-size:1.1rem; color:#fff; opacity:0; transform: translateY(30px); }
+
+/* Footer */
+footer { text-align:center; padding:2rem; color:#fff; font-size:0.9rem; opacity:0; transform: translateY(30px); }
+
+/* Responsive */
+@media(max-width:768px){
+  nav ul { gap:1rem; }
+  header h1 { font-size:2.5rem; }
+  header p { font-size:1rem; }
+  .timeline { margin-left:1rem; }
+
+  
+    
+
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav id="navbar">
+  <div class="logo">Siddartha Bokka</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#blogs">Blogs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<header id="about">
+  <img src="images/me.png" alt="Profile Photo">
+  <h1>Siddartha Bokka</h1>
+  <p>Data Analyst Fresher | Passionate about transforming raw data into meaningful insights.</p>
+</header>
+
+<!-- Experience -->
+<section id="Hands-On Experience">
+ <h2>Applied Analytics Experience</h2>
+  <p>Completed hands-on data analytics projects and simulations through reputed organizations, applying real-world techniques to solve business problems.</p>
+  
+  <div class="timeline">
+    <!-- Deloitte Australia -->
+    <div class="timeline-item">
+      <h3>Deloitte Australia — Data Analytics Job Simulation (Sept 2025)
+</h3>
+      <span>2025</span>
+      <p>Completed a simulation involving data analysis and forensic technology, creating dashboards in Tableau and using Excel to classify data and derive actionable business insights..</p>
+    </div>
+
+    <!-- Tata -->
+    <div class="timeline-item">
+      <h3>Tata Data Visualisation: Empowering Business with Effective Insights Job Simulation on Forage - September 2025</h3>
+      <span>2025</span>
+      <p>Completed a simulation creating data visualizations for TCS, preparing insights for senior leadership and designing visuals to support effective executive decision-making..</p>
+    </div>
+
+    <!-- Quantium -->
+    <div class="timeline-item">
+      <h3>Quantium — Data Analytics Job Simulation (Sept 2025)
+</h3>
+      <span>2025</span>
+      <p>Completed a simulation focused on data analytics and commercial insights, analyzing transaction datasets to extract actionable insights, identify benchmark stores for testing, and create reports that support data-driven strategic decisions..</p>
+    </div>
+  </div>
+</section>
+<!-- Projects -->
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects">
+    <a href="https://github.com/B-Siddartha3/IBM-telecom-churn-insights" target="_blank" class="project-card">
+      <h3>Telecom Customer Churn Analysis </h3>
+      <p>Identified churn patterns, and provided business insights to improve retention.</p>
+    </a>
+
+    <a href="https://github.com/B-Siddartha3/Real-Estate-Analysis" target="_blank" class="project-card">
+      <h3>Real Estate Sales Performance </h3>
+      <p>Provided insights into sales performance, pricing trends, and regional growth patterns, helping stakeholders make informed decisions</p>
+    </a>
+
+    <a href="https://github.com/B-Siddartha3/customer-segmentation" target="_blank" class="project-card">
+      <h3>Customer Segmentation Project (K-Means & PCA)</h3>
+      <p>Identified customer behavior, spending patterns, and product preferences, enabling targeted marketing strategies and better decision-making</p>
+    </a>
+
+    <a href="https://github.com/B-Siddartha3/Zebra-sales-Analysis" target="_blank" class="project-card">
+      <h3>Men's Fashion Retail Performance Dashboard</h3>
+      <p>Provided insights into brand performance, discount strategies, and profitability metrics for Zebra Sales Private Limited, helping merchandisers and buyers make data-driven decisions.</p>
+    </a>
+  </div>
+</section>
+
+
+
+
+<!-- Blogs -->
+<section id="blogs">
+  
+  <h2>Blogs / Articles</h2>
+  <p>Coming soon — I’ll share insights, tutorials, and projects here as I continue to learn and grow in data analytics.</p>
+</section>
+
+
+<!-- Contact -->
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Reach me at: 
+    <a href="mailto:youremail@example.com">www.siddarthasid3@gmail.com</a> | 
+    <a href="https://www.linkedin.com/in/siddartha-b-159a65208?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B4tdGyRXYRqCXrgZtBeSeeg%3D%3D" target="_blank">LinkedIn</a> |
+        <a href="https://github.com/B-Siddartha3" target="_blank">GitHub</a>
+
+  </p>
+</section>
+
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 Siddartha Bokka 
+</footer>
+
+<script>
+// Fade-in on scroll
+const faders = document.querySelectorAll('section, header h1, header p, .project-card, .blogs a, #contact p, footer');
+const options = { threshold: 0.2 };
+const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+      observer.unobserve(entry.target);
+    }
+  });
+}, options);
+
+faders.forEach(fader => { appearOnScroll.observe(fader); });
+
+// Navbar background on scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 50){
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+</script>
+
+</body>
+</html>
